@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: hello-rollout
+  namespace: demo
+spec:
+  replicas: 1
+  strategy:
+    blueGreen:
+      activeService: hello-active
+      previewService: hello-preview
+      autoPromotionEnabled: false  # Manual promotion for demo
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello-container
+        image: hashicorp/http-echo:latest
+        args: ["-text", "Hello, Blue!"]
