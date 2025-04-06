@@ -21,4 +21,4 @@ spec:
       containers:
       - name: hello-container
         image: hashicorp/http-echo:latest
-        args: ["-text", "Hello, Blue!"]
+        args: ["-text", "Hello, Blue! v2"]
