@@ -5,18 +5,18 @@ metadata:
   namespace: demo
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: hello-rollout   
   strategy:
     blueGreen:
       activeService: hello-active
       previewService: hello-preview
-      autoPromotionEnabled: false  # Manual promotion for demo
-  selector:
-    matchLabels:
-      app: hello
+      autoPromotionEnabled: false
   template:
     metadata:
       labels:
-        app: hello
+        app: hello-rollout   
     spec:
       containers:
       - name: hello-container
